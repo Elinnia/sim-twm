@@ -131,7 +131,7 @@
                          <div class="col-md-6">
                             <label class="text-primary">Nama Sekolah</label>
                             <p class="text-sm">
-                                test
+                                SMK TARUNA WIYATAMANDALA
                             </p>
                             
                         </div>
