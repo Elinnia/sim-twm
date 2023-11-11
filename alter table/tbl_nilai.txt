@@ -1,0 +1,1 @@
+ALTER TABLE `tb_nilai_akademik` ADD `nilai_tugas` VARCHAR(5) NOT NULL AFTER `kkm`, ADD `nilai_uts` VARCHAR(5) NOT NULL AFTER `nilai_tugas`, ADD `nilai_uas` VARCHAR(5) NOT NULL AFTER `nilai_uts`;
