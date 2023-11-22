@@ -139,7 +139,7 @@
                          <div class="col-md-6">
                             <label class="text-primary">NPSN</label>
                             <p class="text-sm">
-                                -
+                                69957268
                             </p>
                             
                         </div>

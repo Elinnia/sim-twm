@@ -177,7 +177,8 @@ class NilaiController extends BaseController
                                 ->where("kelas",$request->get("kelas"))
                                 ->get();
          
-        $data_nilai_akademik = Tb_Nilai::with(["siswa","mapel"])->where("id_tahun_ajaran",$param['id_tahun_ajaran'])
+        $data_nilai_akademik = Tb_Nilai::with(["siswa","mapel"])
+                                ->where("id_tahun_ajaran",$param['id_tahun_ajaran'])
                                 ->where("kelas",$param['kelas'])
                                 ->whereHas("siswa",function($query){
                                     if($this->user_type=="siswa"){
