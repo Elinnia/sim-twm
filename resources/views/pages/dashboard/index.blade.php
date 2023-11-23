@@ -168,7 +168,7 @@
                             
                         </div>
 
-                         <div class="col-md-3">
+                         <div class="col-md-6">
                             <label class="text-primary">Email</label>
                             <p class="text-sm d-flex justify-content-start">
                                 {{$data_profil->email}}
@@ -176,7 +176,7 @@
                             
                         </div>
 
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <label class="text-primary">Tentang Sekolah</label>
                             <p class="text-sm d-flex justify-content-start">
                                 "SMK Taruna Wiyatamandala Nagreg adalah Sekolah unggulan yang berada di Kab. Bandung yang membina keahlian vokasi dan pembangunan karakter sehingga lulusannya punya keahlian vokasi yang sesuai dengan dunia kerja dan mempunyai kedisiplinan tinggi."
