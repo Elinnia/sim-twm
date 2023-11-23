@@ -126,27 +126,59 @@
                             </a>
                     </div>
 
-                    <div class="row mt-2">
+                    <div class="row mt-4">
 
                          <div class="col-md-6">
                             <label class="text-primary">Nama Sekolah</label>
                             <p class="text-sm">
-                                SMK TARUNA WIYATAMANDALA
+                                {{$data_profil->nama_sekolah}}
                             </p>
                             
                         </div>
 
-                         <div class="col-md-6">
+                         <div class="col-md-3">
                             <label class="text-primary">NPSN</label>
                             <p class="text-sm">
-                                69957268
+                                {{$data_profil->npsn}}
+                            </p>
+                            
+                        </div>
+
+                         <div class="col-md-3">
+                            <label class="text-primary">NIS/NSS/NDS</label>
+                            <p class="text-sm">
+                                {{$data_profil->nis_nss_nds}}
                             </p>
                             
                         </div>
 
                         <div class="col-md-6">
+                            <label class="text-primary">Alamat Sekolah</label>
+                            <p class="text-sm d-flex justify-content-start">
+                                {{$data_profil->alamat_sekolah}}
+                            </p>
+                            
+                        </div>
+
+                         <div class="col-md-3">
+                            <label class="text-primary">Website</label>
+                            <p class="text-sm d-flex justify-content-start">
+                                {{$data_profil->website}}
+                            </p>
+                            
+                        </div>
+
+                         <div class="col-md-3">
+                            <label class="text-primary">Email</label>
+                            <p class="text-sm d-flex justify-content-start">
+                                {{$data_profil->email}}
+                            </p>
+                            
+                        </div>
+
+                        <div class="col-md-8">
                             <label class="text-primary">Tentang Sekolah</label>
-                            <p class="text-sm">
+                            <p class="text-sm d-flex justify-content-start">
                                 "SMK Taruna Wiyatamandala Nagreg adalah Sekolah unggulan yang berada di Kab. Bandung yang membina keahlian vokasi dan pembangunan karakter sehingga lulusannya punya keahlian vokasi yang sesuai dengan dunia kerja dan mempunyai kedisiplinan tinggi."
                             </p>
                             
@@ -158,26 +190,13 @@
         </div>
 
         <!-- Pie Chart -->
-        <div class="col-xl-4 col-lg-5">
+        <div class="col-xl-8 col-lg-8">
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown (kalender akademik)-->
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Kalender Akademik</h6>
-                    <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                            aria-labelledby="dropdownMenuLink">
-                            <div class="dropdown-header">Dropdown Header:</div>
-                            <a class="dropdown-item" href="#">Libur Hari Besar</a>
-                            <a class="dropdown-item" href="#">UTS</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">UAS</a>
-                        </div>
-                    </div>
+                  
                 </div>
                 <!-- Card Body (kalender akademik)-->
                 <div class="card-body">
@@ -186,115 +205,89 @@
 
                         </div>
                     </div>
-                    <!--<div class="mt-4 text-center small">
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-primary"></i> Libur Hari Besar
-                        </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-success"></i> UTS
-                        </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-info"></i> UAS
-                        </span>
-                    </div>!-->
+                    <div class="table-responsive mt-4 d-none">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                    <th align="center" bgcolor="#F0F8FF">No</th>   
+                                    <th align="center" bgcolor="#F0F8FF">Tanggal</th>
+                                    <th align="center" bgcolor="#F0F8FF">Keterangan</th>  
+                                    </tr>
+                                </thead>
+                                <tbody id="tb_data">
+                                
+                                </tbody>
+                        </table>
+                
+                    </div>
+                  
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Content Row -->
-    <div class="row">
-
-        <!-- Content Column -->
-        <div class="col-lg-6 mb-4">
-
-                       <!-- Color System -->
-            <div class="row">
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-primary text-white shadow">
-                        <div class="card-body">
-                            Primary
-                            <div class="text-white-50 small">#4e73df</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-success text-white shadow">
-                        <div class="card-body">
-                            Success
-                            <div class="text-white-50 small">#1cc88a</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-info text-white shadow">
-                        <div class="card-body">
-                            Info
-                            <div class="text-white-50 small">#36b9cc</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-warning text-white shadow">
-                        <div class="card-body">
-                            Warning
-                            <div class="text-white-50 small">#f6c23e</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-danger text-white shadow">
-                        <div class="card-body">
-                            Danger
-                            <div class="text-white-50 small">#e74a3b</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-secondary text-white shadow">
-                        <div class="card-body">
-                            Secondary
-                            <div class="text-white-50 small">#858796</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-light text-black shadow">
-                        <div class="card-body">
-                            Light
-                            <div class="text-black-50 small">#f8f9fc</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-dark text-white shadow">
-                        <div class="card-body">
-                            Dark
-                            <div class="text-white-50 small">#5a5c69</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="col-lg-6 mb-4">
-
-           
-
-            <!-- Approach (about smk taruna wiyatamandala)-->
+        <div class="col-xl-4 col-lg-4">
             <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">About SMK Taruna Wiyatamandala</h6>
+                <!-- Card Header - Dropdown (kalender akademik)-->
+                <div
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Siswa dengan nilai terbaik</h6>
+                  
                 </div>
+                <!-- Card Body (kalender akademik)-->
                 <div class="card-body">
-                    <p>"SMK Taruna Wiyatamandala Nagreg adalah Sekolah unggulan yang berada di Kab. Bandung yang membina keahlian vokasi dan pembangunan karakter sehingga lulusannya punya keahlian vokasi yang sesuai dengan dunia kerja dan mempunyai kedisiplinan tinggi."</p>
-                    
+                    <div class="col-md-12">
+                       @if($data_siswa_terbaik==null)
+                        <span>
+                            Belum ada data nilai
+                        </span>
+                       @else
+                         <img src="{{ FileUpload::GetFile("siswa",$data_siswa_terbaik['photo'])}}"   class="mx-auto img-thumbnail img-responsive img-fluid" />
+                         <div class="row mt-4">
+                            <div class="col-md-12">
+                                <label class="text-primary">Nama Siswa</label>
+                                <p class="text-sm">
+                                    {{$data_siswa_terbaik->nama_peserta_didik}}
+                                </p>
+                                
+                            </div>
+                            <div class="col-md-6">
+                                <label class="text-primary">NISN</label>
+                                <p class="text-sm">
+                                    {{$data_siswa_terbaik->nisn}}
+                                </p>
+                                
+                            </div>
+                            <div class="col-md-6">
+                                <label class="text-primary">Kelas</label>
+                                <p class="text-sm">
+                                    {{$data_siswa_terbaik->kelas}}  {{$data_siswa_terbaik->jurusan->nama_jurusan}}
+                                </p>
+                                
+                            </div>
+                            <div class="col-md-6">
+                                <label class="text-primary">Rata-rata Nilai</label>
+                                <p class="text-sm">
+                                    {{$data_siswa_terbaik->nilai_rata}}
+                                </p>
+                                
+                            </div>
+                             <div class="col-md-6">
+                                <label class="text-primary">Nilai Tertinggi</label>
+                                <p class="text-sm">
+                                    {{$data_siswa_terbaik->nilai_tinggi}}
+                                </p>
+                                
+                            </div>
+                         </div>
+                         @endif
+                    </div>
+                   
+                  
                 </div>
             </div>
-
         </div>
     </div>
+
+   
 
 </div>
 
@@ -305,6 +298,8 @@
     <!-- Page level custom scripts -->
     <script src="{{asset('js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('js/demo/chart-pie-demo.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+ 
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
     <script>
 
@@ -312,7 +307,33 @@
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
           initialView: 'dayGridMonth',
-          contentHeight: 240
+          //contentHeight: 360
+          events: function (info, callback) {
+                    // Get your parameters dynamically
+                var month = moment(info.start.valueOf()).add("1","month").format('MM');
+                var year =  moment(info.start.valueOf()).add("1","month").format('YYYY');
+
+                
+                
+                // Make an AJAX request with parameters
+                $.ajax({
+                    url: "{{route('dashboard.get_calendar')}}",
+                    method: 'GET',
+                    data: {
+                        month: month,
+                        year: year
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        // Process the data and pass it to FullCalendar
+                       // var events = JSON.parse(data);
+                        callback(data);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            }
         });
         calendar.render();
       });

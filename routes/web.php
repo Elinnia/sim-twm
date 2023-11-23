@@ -50,6 +50,7 @@ Route::group(['middleware' => ['guest']], function() {
 Route::middleware(['check.login'])->group(function(){
     Route::name('dashboard.')->prefix('dashboard')->group(function(){
         Route::get('/', [DashboardController::class, 'index'])->name('index');
+        Route::get('/get-calendar', [DashboardController::class, 'get_calendar'])->name('get_calendar');
     });
     Route::name('siswa.')->prefix('siswa')->group(function(){
        Route::get('/', [SiswaController::class, 'index'])->name('index');
