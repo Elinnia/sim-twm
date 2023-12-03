@@ -86,7 +86,7 @@ class NilaiController extends BaseController
 
             $dt_guru = Tb_Guru::whereIn("nip",$nip)->get();
             $dt_tahun_ajar  = Tb_Tahun_Ajaran::whereIn("id_tahun_ajaran",$id_tahun_ajaran)->get();
-            $dt_jurusan  = Tb_Jurusan::whereIn("kode_jurusan",$kode_jurusan)->get();
+            $dt_jurusan  = Tb_Jurusan::whereNotIn("kode_jurusan",[1])->get();
             $dt_kelas = Utility::get_kelas();
             $auth = Session::get("auth");
             $user_type = $auth['user_type'];

@@ -62,7 +62,7 @@ class KehadiranController extends BaseController
             }
         
             $dt_tahun_ajar  = Tb_Tahun_Ajaran::whereIn("id_tahun_ajaran",$id_tahun_ajaran)->get();
-            $dt_jurusan  = Tb_Jurusan::whereIn("kode_jurusan",$kode_jurusan)->get();
+            $dt_jurusan  = Tb_Jurusan::whereNotIn("kode_jurusan",[1])->get();
             $dt_kelas = Utility::get_kelas();
         }
         else{
