@@ -294,7 +294,7 @@
                 var nilai_akhir = (parseFloat(nilai_pengetahuan)+parseFloat(nilai_keterampilan))/2;
                 $(this).parent().parent().find(".nilai_akhir").val(nilai_akhir.toFixed(2));
                 var predikat = "E";
-                if(nilai_akhir>=86 && nilai_akhir<=100){
+                if(nilai_akhir>=85 && nilai_akhir<=100){
                     predikat = "A";
                 }
                 else if(nilai_akhir>=75 && nilai_akhir<=85){

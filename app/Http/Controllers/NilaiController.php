@@ -312,7 +312,7 @@ class NilaiController extends BaseController
                 $nilai_pengetahuan = $dt_nilai->nilai_pengetahuan;
                 $nilai_keterampilan = $dt_nilai->nilai_keterampilan;
                 $nilai_akhir = ($nilai_pengetahuan+$nilai_keterampilan)/2;
-                if($nilai_akhir>=86 && $nilai_akhir<=100){
+                if($nilai_akhir>=85 && $nilai_akhir<=100){
                    $predikat = "A";
                 }
                 else if($nilai_akhir>=75 && $nilai_akhir<=85){
