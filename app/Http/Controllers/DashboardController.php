@@ -60,7 +60,8 @@ class DashboardController extends BaseController
             $p = array(
                 "title" => $d->kalender_deskripsi,
                 "start" => $d->kalender_date,
-                "end" => $d->kalender_date
+                "end" => $d->kalender_date,
+                "dates" => $d->kalender_date
             );
             $resp_data[] = $p;
         }

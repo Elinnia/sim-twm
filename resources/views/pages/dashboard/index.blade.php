@@ -107,10 +107,10 @@
                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                <img class="d-block w-100" style="height: 350px !important;object-fit: cover;" src="https://foto.data.kemdikbud.go.id/getImage/69957268/9.jpg" alt="First slide">
+                                <img class="d-block w-100" style="height: 350px !important;object-fit: cover;" src="https://dnntv.id/wp-content/uploads/2023/07/IMG-20230718-WA0122.jpg" alt="First slide">
                                 </div>
                                 <div class="carousel-item">
-                                <img class="d-block w-100" style="height: 350px !important;object-fit: cover;" src="https://foto.data.kemdikbud.go.id/getImage/69957268/3.jpg" alt="Second slide">
+                                <img class="d-block w-100" style="height: 350px !important;object-fit: cover;" src="https://sambasnews.id/wp-content/uploads/2022/06/74731eb4-d8c7-4399-b7e4-ab3575e56cc7.jpg" alt="Second slide">
                                 </div>
                                 <div class="carousel-item">
                                 <img class="d-block w-100" style="height: 350px !important;object-fit: cover;" src="https://dnntv.id/wp-content/uploads/2023/10/IMG-20231009-WA0293.jpg" alt="Third slide">
@@ -286,9 +286,36 @@
             </div>
         </div>
     </div>
+</div>
 
-   
-
+<div class="modal" id="modalCalendar" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Detail Kalender Akademik</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <h6>Tanggal</h6>
+                <span id="tanggal"></span>
+            </div>
+            
+            <div class="col-md-12 mt-3">
+                <h6>Keterangan</h6>
+                <span id="keterangan"></span>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+       
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 @endsection
@@ -307,6 +334,15 @@
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
           initialView: 'dayGridMonth',
+          eventClick: function(calEvent, jsEvent, view) {
+               console.log(calEvent);
+               var keterangan = calEvent.event.title;
+               var tanggal = calEvent.event.extendedProps.dates;
+               $("#tanggal").html(tanggal);
+               $("#keterangan").html(keterangan);
+               
+               $("#modalCalendar").modal("show");
+          },
           //contentHeight: 360
           events: function (info, callback) {
                     // Get your parameters dynamically
