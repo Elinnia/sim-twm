@@ -871,8 +871,7 @@ margin-right: auto;font-size:14pt;width:300px;">
                     @endphp
                 </div>
                
-                <br />
-                <br />
+               
 
                 <table border="0" style="width:100%;margin-top:10px;">
                     <tr>
