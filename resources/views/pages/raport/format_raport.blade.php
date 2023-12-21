@@ -876,7 +876,7 @@ margin-right: auto;font-size:14pt;width:300px;">
                 <table border="0" style="width:100%;margin-top:10px;">
                     <tr>
                         <td style="width: 40%;">Mengetahui: </td>
-                        <td style="width: 60%;" align="right">Nagreg, {{\Carbon\Carbon::now()->formatLocalized('%d %B %Y')}}</td>
+                        <td style="width: 60%;" align="right">Nagreg, 22 Desember 2023</td>
                     </tr>
                     <tr>
                         <td style="width:50%;">Orang Tua/Wali, </td>
