@@ -115,6 +115,9 @@
                                 <div class="carousel-item">
                                 <img class="d-block w-100" style="height: 350px !important;object-fit: cover;" src="https://dnntv.id/wp-content/uploads/2023/10/IMG-20231009-WA0293.jpg" alt="Third slide">
                                 </div>
+                                <div class="carousel-item">
+                                <img class="d-block w-100" style="height: 350px !important;object-fit: cover;" src="{{asset('img/tari.jpeg')}}" alt="Third slide">
+                                </div>
                             </div>
                             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
