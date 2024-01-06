@@ -65,6 +65,16 @@
           </div>
             
         </div>
+
+        <div class="col-sm-6">
+           <div class="form-group">
+            <label class="text-primary">Tanggal Cetak Raport</label>
+            <input type="date"  class="form-control kalender_date" value="{{date('Y-m-d')}}" />
+          </div>
+            
+        </div>
+        <div class="col-sm-6">
+        </div>
        
         
         <div class="col-sm-3 mt-4">
@@ -205,7 +215,7 @@
                             </td>
                             <td>${item.nama_peserta_didik}</td>
                             <td>
-                                <a target='__blank' href='{{route('raport.cetak')}}?nisn=${item.nisn}&&semester=${item.semester}&&id_tahun_ajaran=${item.id_tahun_ajaran}&&kelas=${item.kelas}&&kode_jurusan=${item.kode_jurusan}' class='btn btn-sm btn-danger'>
+                                <a target='__blank' href='{{route('raport.cetak')}}?tgl_raport=${$(".kalender_date").val()}&&nisn=${item.nisn}&&semester=${item.semester}&&id_tahun_ajaran=${item.id_tahun_ajaran}&&kelas=${item.kelas}&&kode_jurusan=${item.kode_jurusan}' class='btn btn-sm btn-danger'>
                                     @if(Auth::user()->user_type=="siswa")
                                         LIHAT RAPORT
                                     @else

@@ -871,12 +871,20 @@ margin-right: auto;font-size:14pt;width:300px;">
                     @endphp
                 </div>
                
-               
+                @php
+                
+                $currentDate = Carbon\Carbon::now();
+                $formattedDate = $currentDate->format('d F Y');
+                if($tgl_raport!=null){
+                    $formattedDate = Carbon\Carbon::createFromFormat('Y-m-d', $tgl_raport);
+                    $formattedDate = $formattedDate->format('d F Y');
+                }
+                @endphp
 
                 <table border="0" style="width:100%;margin-top:10px;">
                     <tr>
                         <td style="width: 40%;">Mengetahui: </td>
-                        <td style="width: 60%;" align="right">Nagreg, 22 Desember 2023</td>
+                        <td style="width: 60%;" align="right">Nagreg, {{$formattedDate}}</td>
                     </tr>
                     <tr>
                         <td style="width:50%;">Orang Tua/Wali, </td>
