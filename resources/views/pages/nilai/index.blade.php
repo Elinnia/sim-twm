@@ -300,10 +300,10 @@
                 else if(nilai_akhir>=75 && nilai_akhir<=85){
                     predikat = "B";
                 }
-                else if(nilai_akhir>=60 && nilai_akhir<=74){
+                else if(nilai_akhir>=60 && nilai_akhir<75){
                     predikat = "C";
                 }
-                else if(nilai_akhir>=45 && nilai_akhir<=60){
+                else if(nilai_akhir>=45 && nilai_akhir<60){
                     predikat = "D";
                 }
                 else{
