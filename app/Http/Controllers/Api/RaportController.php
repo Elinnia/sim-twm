@@ -251,7 +251,7 @@ class RaportController extends Controller
         $dt_kepsek=    Tb_User::with(["guru"])
                         ->where("user_type","kepala_sekolah")
                         ->first();
-
+        $tgl_raport = null;
         $param = array(
             "logo" => $logo,
             "data_siswa" => $data_siswa,
@@ -270,6 +270,7 @@ class RaportController extends Controller
             "dt_karakter" => $dt_karakter,
             "dt_walikelas" => $dt_walikelas,
             "dt_kepsek" => $dt_kepsek,
+            "tgl_raport" => $tgl_raport
             
         );
         
