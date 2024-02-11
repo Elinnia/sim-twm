@@ -386,7 +386,11 @@
                         <i class="fas fa-fw fa-calendar"></i>
                         <span>Kalender Akademik</span></a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('mapel.index')}}">
+                        <i class="fas fa-fw fa-calendar"></i>
+                        <span>Mata Pelajaran</span></a>
+                </li>
                  <!-- Divider -->
                 <hr class="sidebar-divider">
                 <!-- Heading -->
