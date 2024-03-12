@@ -123,7 +123,7 @@
                 }
                 else{
                     $(".list-semester").append(`<option value="V">V</option>`);
-                    $(".list-semester").append(`<option value="V">VI</option>`);
+                    $(".list-semester").append(`<option value="VI">VI</option>`);
                 }
                 $(".list-semester").trigger("change");
             });

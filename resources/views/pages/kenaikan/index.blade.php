@@ -116,7 +116,7 @@
                     $(".list-semester").append(`<option value="IV">IV</option>`);
                 }
                 else{
-                    $(".list-semester").append(`<option value="V">VI</option>`);
+                    $(".list-semester").append(`<option value="VI">VI</option>`);
                 }
                 $(".list-semester").trigger("change");
             });
