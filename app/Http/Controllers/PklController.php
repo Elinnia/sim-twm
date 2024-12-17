@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Validator;
 use PDF;
 use App;
 use Illuminate\Support\Facades\Auth;
+
 class PklController extends BaseController
 {
     private $nip;
@@ -22,23 +23,23 @@ class PklController extends BaseController
     private $user_type;
     private $kode_walikelas;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->nip = null;
         $this->middleware(function ($request, $next) {
             $this->user_type = Auth::user()->user_type;
-            if(Auth::user()->user_type=="guru"){
+            if (Auth::user()->user_type == "guru") {
                 $this->nip = Auth::user()->user_conid;
-            }
-            else if(Auth::user()->user_type=="siswa"){
+            } else if (Auth::user()->user_type == "siswa") {
                 $this->nisn = Auth::user()->user_conid;
             }
-            
-            
-            if(Auth::user()->user_type=="wali_kelas"){
-                $data_walikelas  = Tb_Walikelas::where("nip",Auth::user()->user_conid)->get();
+
+
+            if (Auth::user()->user_type == "wali_kelas") {
+                $data_walikelas  = Tb_Walikelas::where("nip", Auth::user()->user_conid)->get();
                 $dw = [];
-                foreach($data_walikelas as $dwk){
-                    $dw[] =$dwk->kode_walikelas;
+                foreach ($data_walikelas as $dwk) {
+                    $dw[] = $dwk->kode_walikelas;
                 }
                 $this->kode_walikelas = $dw;
             }
@@ -48,30 +49,30 @@ class PklController extends BaseController
     }
 
 
-    public function index(){
-        if($this->user_type=="wali_kelas"){
-           
-            $data_nilai = Tb_Pkl::whereIn("kode_walikelas",$this->kode_walikelas)->groupBy("id_tahun_ajaran")->get();
+    public function index()
+    {
+        if ($this->user_type == "wali_kelas") {
+
+            $data_nilai = Tb_Pkl::whereIn("kode_walikelas", $this->kode_walikelas)->groupBy("id_tahun_ajaran")->get();
             $id_tahun_ajaran = [];
-            foreach($data_nilai as $dn){
+            foreach ($data_nilai as $dn) {
                 $id_tahun_ajaran[] = $dn->id_tahun_ajaran;
             }
-            $data_nilai = Tb_Pkl::whereIn("kode_walikelas",$this->kode_walikelas)->groupBy("kode_jurusan")->get();
+            $data_nilai = Tb_Pkl::whereIn("kode_walikelas", $this->kode_walikelas)->groupBy("kode_jurusan")->get();
             $kode_jurusan = [];
-            foreach($data_nilai as $dn){
+            foreach ($data_nilai as $dn) {
                 $kode_jurusan[] = $dn->kode_jurusan;
             }
-        
-            $dt_tahun_ajar  = Tb_Tahun_Ajaran::whereIn("id_tahun_ajaran",$id_tahun_ajaran)->get();
-            $dt_jurusan = Tb_Jurusan::whereNotIn("nama_jurusan",["Umum"])->get();
+
+            $dt_tahun_ajar  = Tb_Tahun_Ajaran::get();
+            $dt_jurusan = Tb_Jurusan::whereNotIn("nama_jurusan", ["Umum"])->get();
             $dt_kelas = Utility::get_kelas();
-        }
-        else{
+        } else {
             $dt_tahun_ajar = Tb_Tahun_Ajaran::get();
             $dt_kelas = Utility::get_kelas();
-            $dt_jurusan = Tb_Jurusan::whereNotIn("nama_jurusan",["Umum"])->get();
+            $dt_jurusan = Tb_Jurusan::whereNotIn("nama_jurusan", ["Umum"])->get();
         }
- 
+
         $param = array(
             "dt_tahun_ajar" => $dt_tahun_ajar,
             "dt_kelas" => $dt_kelas,
@@ -79,85 +80,86 @@ class PklController extends BaseController
         );
         return view("pages/pkl/index")->with($param);
     }
-    public function get_data(Request $request){
+    public function get_data(Request $request)
+    {
         $param = $request->all();
-        $dt = Tb_Siswa::where("kelas",$param['kelas'])
-                        ->where("kode_jurusan",$param['kode_jurusan'])
-                        ->where("status_siswa","aktif")
-                        ->get();
-        foreach($dt as &$d){
-            $dt_pkl = Tb_Pkl::where("nisn",$d->nisn)
-                        ->where("id_tahun_ajaran",$param['id_tahun_ajaran'])
-                        ->where("kelas",$param['kelas'])
-                        ->where("kode_jurusan",$param['kode_jurusan'])
-                        ->where("semester",$param['semester'])
-                        ->first();
+        $dt = Tb_Siswa::where("kelas", $param['kelas'])
+            ->where("kode_jurusan", $param['kode_jurusan'])
+            ->where("status_siswa", "aktif")
+            ->get();
+        foreach ($dt as &$d) {
+            $dt_pkl = Tb_Pkl::where("nisn", $d->nisn)
+                ->where("id_tahun_ajaran", $param['id_tahun_ajaran'])
+                ->where("kelas", $param['kelas'])
+                ->where("kode_jurusan", $param['kode_jurusan'])
+                ->where("semester", $param['semester'])
+                ->first();
             $kode_pkl = "";
             $mitra_dudi = "";
             $lokasi = "";
             $masa_bulan = "";
             $keterangan = "";
-            
-            if($dt_pkl==true){
+
+            if ($dt_pkl == true) {
                 $kode_pkl = $dt_pkl->kode_pkl;
                 $mitra_dudi = $dt_pkl->mitra_dudi;
                 $lokasi = $dt_pkl->lokasi;
                 $masa_bulan = $dt_pkl->masa_bulan;
                 $keterangan = $dt_pkl->keterangan;
-                
             }
             $d->kode_pkl = $kode_pkl;
             $d->mitra_dudi = $mitra_dudi;
             $d->lokasi = $lokasi;
             $d->masa_bulan = $masa_bulan;
-            
+
             $d->keterangan = $keterangan;
         }
-        return response()->json($dt); 
+        return response()->json($dt);
     }
 
-    public function store(Request $request){
-       $param = $request->all();
-       $validator = Validator::make($param, [
-            'nisn' => 'required', 
+    public function store(Request $request)
+    {
+        $param = $request->all();
+        $validator = Validator::make($param, [
+            'nisn' => 'required',
             'id_tahun_ajaran' => 'required',
         ]);
-        if($validator->fails()) {
+        if ($validator->fails()) {
             return response()->json(['success' => 0, 'message' => 'Validation Error ', 'errors' => $validator->errors()], 400);
         }
-       $nisn = $param['nisn'];
-       $id_tahun_ajaran = $request->get("id_tahun_ajaran");
-       $semester = $request->get("semester");
-       $i = 0;
+        $nisn = $param['nisn'];
+        $id_tahun_ajaran = $request->get("id_tahun_ajaran");
+        $semester = $request->get("semester");
+        $i = 0;
 
-       $get_walikelas  = Tb_Walikelas::where("kelas",$request->get("kelas"))
-                                       ->where("kode_jurusan",$request->get("kode_jurusan"))
-                                       ->where("id_tahun_ajaran",$request->get("id_tahun_ajaran"))
-                                       ->first();
-       $kode_walikelas = $get_walikelas->kode_walikelas;
+        $get_walikelas  = Tb_Walikelas::where("kelas", $request->get("kelas"))
+            ->where("kode_jurusan", $request->get("kode_jurusan"))
+            ->where("id_tahun_ajaran", $request->get("id_tahun_ajaran"))
+            ->first();
+        $kode_walikelas = $get_walikelas->kode_walikelas;
 
-       foreach ($nisn as $n) {
+        foreach ($nisn as $n) {
             $mitra_dudi = $param['mitra_dudi'][$i];
-            if(strlen($mitra_dudi)<1){
+            if (strlen($mitra_dudi) < 1) {
                 $mitra_dudi = "";
             }
 
             $lokasi = $param['lokasi'][$i];
-            if(strlen($lokasi)<1){
+            if (strlen($lokasi) < 1) {
                 $lokasi = "";
             }
 
             $masa_bulan = $param['masa_bulan'][$i];
-            if(strlen($masa_bulan)<1){
+            if (strlen($masa_bulan) < 1) {
                 $masa_bulan = "";
             }
 
             $keterangan = $param['keterangan'][$i];
-            if(strlen($keterangan)<1){
+            if (strlen($keterangan) < 1) {
                 $keterangan = "";
             }
             $kode_pkl = $param['kode_pkl'][$i];
-            if(strlen($kode_pkl)<1){
+            if (strlen($kode_pkl) < 1) {
 
                 $p = array(
                     "kode_walikelas" => $kode_walikelas,
@@ -172,11 +174,10 @@ class PklController extends BaseController
                     "keterangan" => $keterangan
                 );
 
-               Tb_Pkl::create($p);
-            }
-            else{
-               // echo "MASUK";
-              $p = array(
+                Tb_Pkl::create($p);
+            } else {
+                // echo "MASUK";
+                $p = array(
                     "kode_walikelas" => $kode_walikelas,
                     "nisn" => $n,
                     "kelas" => $request->get("kelas"),
@@ -189,10 +190,9 @@ class PklController extends BaseController
                     "keterangan" => $keterangan
                 );
 
-                Tb_Pkl::where("kode_pkl",$kode_pkl)->update($p);
+                Tb_Pkl::where("kode_pkl", $kode_pkl)->update($p);
             }
             $i++;
-       }
+        }
     }
-   
 }
